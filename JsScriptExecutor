@@ -1,0 +1,40 @@
+package org.ink;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class JsExecutorScript {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.get("https://www.globalsqa.com/demo-site/");
+		
+		Thread.sleep(3000);
+		
+		WebElement d = driver.findElement(By.xpath("//a[text()=' GlobalSQA']"));
+		
+		JavascriptExecutor executor= (JavascriptExecutor) driver;
+		
+		executor.executeScript("arguments[0].scrollIntoView(true)", d);
+		
+		System.out.println(d.getText());
+		
+		Thread.sleep(3000);
+		
+		WebElement p = driver.findElement(By.xpath("//img[@class='emoji']"));
+		
+		executor.executeScript("arguments[0].scrollIntoView(false)", p);
+		
+		System.out.println(p.getText());
+		
+		
+	}
+
+}
